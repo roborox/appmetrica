@@ -1,9 +1,44 @@
-import { NativeModules } from 'react-native';
+import { NativeModules } from "react-native"
+import RNYandexAppMetrica from "react-native-appmetrica"
 
-type AppmetricaType = {
-  multiply(a: number, b: number): Promise<number>;
-};
+const ExYandexAppMetrica: {
+	reportUserProfile(profile: object): void
+} = NativeModules.YandexAppMetrica
 
-const { Appmetrica } = NativeModules;
+export * from "react-native-appmetrica"
 
-export default Appmetrica as AppmetricaType;
+type Time = number | [number, number?, number?] | null
+
+export type UserProfile = {
+	name?: string | null,
+	age?: number | null,
+	birthDate?: Time | { (): Time } | { getTime(): Time },
+	notificationsEnabled?: boolean | null,
+} & {
+	[key: string]: boolean | number | string,
+}
+
+export const YandexAppMetrica = {
+	...RNYandexAppMetrica,
+	async requestAppMetricaDeviceID() {
+		return new Promise((resolve, reject) => {
+			RNYandexAppMetrica.requestAppMetricaDeviceID((deviceID, reason) => {
+				if (deviceID) resolve(deviceID)
+				else reject(reason)
+			})
+		})
+	},
+	reportUserProfile(profile: UserProfile) {
+		if ("birthDate" in profile && profile.birthDate) {
+			if (typeof profile.birthDate === "function") {
+				profile.birthDate = profile.birthDate()
+			} else if (
+				typeof profile.birthDate === "object"
+				&& "getTime" in profile.birthDate
+			) {
+				profile.birthDate = profile.birthDate.getTime()
+			}
+		}
+		ExYandexAppMetrica.reportUserProfile(profile)
+	},
+}
