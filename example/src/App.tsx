@@ -4,8 +4,6 @@ import { StyleSheet, View, Text } from "react-native"
 import { YandexAppMetrica } from "@roborox/appmetrica"
 
 export function App() {
-	const [result, setResult] = React.useState<number | undefined>()
-
 	React.useEffect(() => {
 		YandexAppMetrica.activate({ apiKey: "BLAH" })
 		YandexAppMetrica.reportUserProfile({
@@ -15,7 +13,7 @@ export function App() {
 
 	return (
 		<View style={styles.container}>
-			<Text>Result: {result}</Text>
+			<Text>Blah</Text>
 		</View>
 	)
 }
