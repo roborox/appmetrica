@@ -21,9 +21,9 @@ export type UserProfile = {
 export const YandexAppMetrica = {
 	...RNYandexAppMetrica,
 	async requestAppMetricaDeviceID() {
-		return new Promise((resolve, reject) => {
+		return new Promise<string>((resolve, reject) => {
 			RNYandexAppMetrica.requestAppMetricaDeviceID((deviceID, reason) => {
-				if (deviceID) resolve(deviceID)
+				if (deviceID) resolve(deviceID.toString())
 				else reject(reason)
 			})
 		})
