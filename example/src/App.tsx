@@ -1,25 +1,29 @@
-import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import Appmetrica from '@roborox/appmetrica';
+/* eslint-disable unicorn/filename-case */
+import * as React from "react"
+import { StyleSheet, View, Text } from "react-native"
+import { YandexAppMetrica } from "@roborox/appmetrica"
 
-export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+export function App() {
+	const [result, setResult] = React.useState<number | undefined>()
 
-  React.useEffect(() => {
-    Appmetrica.multiply(3, 7).then(setResult);
-  }, []);
+	React.useEffect(() => {
+		YandexAppMetrica.activate({ apiKey: "BLAH" })
+		YandexAppMetrica.reportUserProfile({
+			blah: "asd",
+		})
+	}, [])
 
-  return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<Text>Result: {result}</Text>
+		</View>
+	)
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	container: {
+		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+})
