@@ -1,6 +1,6 @@
 {
   "name": "@roborox/appmetrica",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Yandex AppMetrica wrap module",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -18,10 +18,10 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest",
     "typescript": "tsc --noEmit",
