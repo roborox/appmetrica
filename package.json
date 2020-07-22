@@ -18,7 +18,10 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
-  ],
+	],
+	"publishConfig": {
+		"access": "public"
+	},
   "scripts": {
     "test": "jest",
     "typescript": "tsc --noEmit",
