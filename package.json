@@ -63,7 +63,6 @@
     "prettier": "^2.0.5",
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-appmetrica": "^2.0.0",
     "release-it": "^13.5.8",
     "typescript": "^3.8.3"
   },
@@ -142,5 +141,8 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "react-native-appmetrica": "^2.0.0"
   }
 }
