@@ -1,5 +1,5 @@
-@objc(Appmetrica)
-class Appmetrica: NSObject {
+@objc(RoboroxAppmetrica)
+class RoboroxAppmetrica: NSObject {
     @objc(reportUserProfile:)
     func reportUserProfile(profile:NSDictionary!) -> Void {
         var attrsArray:[YMMUserProfileUpdate] = []

@@ -12,7 +12,7 @@ import kotlin.String
 
 class AppmetricaModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
     override fun getName(): String {
-        return "Appmetrica"
+        return "RoboroxAppmetrica"
     }
 
     @ReactMethod

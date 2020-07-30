@@ -3,7 +3,7 @@ import RNYandexAppMetrica from "react-native-appmetrica"
 
 const ExYandexAppMetrica: {
 	reportUserProfile(profile: object): void
-} = NativeModules.Appmetrica
+} = NativeModules.RoboroxAppmetrica
 
 export * from "react-native-appmetrica"
 
