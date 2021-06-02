@@ -1,6 +1,6 @@
 buildscript {
-  // Buildscript is evaluated before everything else so we can't use getExtOrDefault
-  def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['Appmetrica_kotlinVersion']
+  // Buildscript is evaluated before everything else so we can"t use safeExt
+  def kotlin_version = rootProject.ext.has("kotlinVersion") ? rootProject.ext.get("kotlinVersion") : project.properties["Appmetrica_kotlinVersion"]
 
   repositories {
     google()
@@ -8,29 +8,25 @@ buildscript {
   }
 
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.2.1'
+    classpath "com.android.tools.build:gradle:3.2.1"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
-def getExtOrDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['Appmetrica_' + name]
-}
-
-def getExtOrIntegerDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['Appmetrica_' + name]).toInteger()
+def safeExt(name) {
+	return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties["Appmetrica_" + name]
 }
 
 android {
-  compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
-  buildToolsVersion getExtOrDefault('buildToolsVersion')
+  compileSdkVersion safeExt("compileSdkVersion").toInteger()
+  buildToolsVersion safeExt("buildToolsVersion")
   defaultConfig {
     minSdkVersion 16
-    targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+    targetSdkVersion safeExt("targetSdkVersion").toInteger()
     versionCode 1
     versionName "1.0"
 
@@ -42,7 +38,7 @@ android {
     }
   }
   lintOptions {
-    disable 'GradleCompatible'
+    disable "GradleCompatible"
   }
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
@@ -57,14 +53,14 @@ repositories {
 
   def found = false
   def defaultDir = null
-  def androidSourcesName = 'React Native sources'
+  def androidSourcesName = "React Native sources"
 
-  if (rootProject.ext.has('reactNativeAndroidRoot')) {
-    defaultDir = rootProject.ext.get('reactNativeAndroidRoot')
+  if (rootProject.ext.has("reactNativeAndroidRoot")) {
+    defaultDir = rootProject.ext.get("reactNativeAndroidRoot")
   } else {
     defaultDir = new File(
             projectDir,
-            '/../../../node_modules/react-native/android'
+            "/../../../node_modules/react-native/android"
     )
   }
 
@@ -85,12 +81,12 @@ repositories {
 
       def androidSourcesDir = new File(
               parentDir,
-              'node_modules/react-native'
+              "node_modules/react-native"
       )
 
       def androidPrebuiltBinaryDir = new File(
               parentDir,
-              'node_modules/react-native/android'
+              "node_modules/react-native/android"
       )
 
       if (androidPrebuiltBinaryDir.exists()) {
@@ -121,11 +117,12 @@ repositories {
   }
 }
 
-def kotlin_version = getExtOrDefault('kotlinVersion')
+def kotlin_version = safeExt("kotlinVersion")
 
 dependencies {
   // noinspection GradleDynamicVersion
-  api 'com.facebook.react:react-native:+'
+  api "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation 'com.yandex.android:mobmetricalib:3.13.3'
+  implementation "com.yandex.android:mobmetricalib:3.13.3"
+	implementation "com.yandex.android:mobmetricapushlib:1.11.1"
 }
