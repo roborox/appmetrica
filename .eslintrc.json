@@ -1,19 +1,7 @@
 {
 	"extends": [
-	  "@react-native-community",
-    "prettier",
-    "@roborox/default"
+		"prettier",
+		"@roborox/default"
 	],
-	"rules": {
-	  "prettier/prettier": [
-      "error",
-      {
-        "quoteProps": "consistent",
-        "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "es5",
-        "useTabs": false
-      }
-	  ]
-  }
+	"parser": "@typescript-eslint/parser"
 }
