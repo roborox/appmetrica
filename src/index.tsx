@@ -2,6 +2,7 @@ import { NativeModules } from "react-native"
 import RNYandexAppMetrica from "react-native-appmetrica"
 
 const ExYandexAppMetrica: {
+	initPush(token?: string): void
 	reportUserProfile(profile: object): void
 } = NativeModules.RoboroxAppmetrica
 
@@ -27,6 +28,9 @@ export const YandexAppMetrica = {
 				else reject(reason)
 			})
 		})
+	},
+	initPush(token?: string) {
+		ExYandexAppMetrica.initPush(token)
 	},
 	reportUserProfile(profile: UserProfile) {
 		if ("birthDate" in profile && profile.birthDate) {
