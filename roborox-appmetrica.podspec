@@ -18,5 +18,6 @@ Pod::Spec.new do |s|
 
 
   s.dependency "React"
-  s.dependency "YandexMobileMetrica", "3.9.4"
+  s.dependency "YandexMobileMetrica", "3.16.0"
+  s.dependency "YandexMobileMetricaPush", "0.8.0"
 end

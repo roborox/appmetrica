@@ -1,8 +1,18 @@
+import Foundation
+import YandexMobileMetrica
+import YandexMobileMetricaPush
+
 @objc(RoboroxAppmetrica)
 class RoboroxAppmetrica: NSObject {
+    @objc(initPush:)
+    func initPush(deviceToken: NSString) -> Void {
+        let token = deviceToken.data(using: String.Encoding.utf8.rawValue)
+        YMPYandexMetricaPush.setDeviceTokenFrom(token)
+    }
+
     @objc(reportUserProfile:)
-    func reportUserProfile(profile:NSDictionary!) -> Void {
-        var attrsArray:[YMMUserProfileUpdate] = []
+    func reportUserProfile(profile: NSDictionary!) -> Void {
+        var attrsArray: [YMMUserProfileUpdate] = []
 
         for (keyAny, _) in profile {
             let key = keyAny as! String
@@ -53,8 +63,8 @@ class RoboroxAppmetrica: NSObject {
             }
          }
 
-        let userProfile:YMMMutableUserProfile = YMMMutableUserProfile()
+        let userProfile: YMMMutableUserProfile = YMMMutableUserProfile()
         userProfile.apply(from: attrsArray)
-        YMMYandexMetrica.report(userProfile, onFailure:{ (error:Error) in })
+        YMMYandexMetrica.report(userProfile, onFailure: { (error:Error) in })
     }
 }
