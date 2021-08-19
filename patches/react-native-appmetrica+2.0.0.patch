@@ -1,0 +1,11 @@
+diff --git a/node_modules/react-native-appmetrica/react-native-appmetrica.podspec b/node_modules/react-native-appmetrica/react-native-appmetrica.podspec
+index 4b03b79..4349526 100644
+--- a/node_modules/react-native-appmetrica/react-native-appmetrica.podspec
++++ b/node_modules/react-native-appmetrica/react-native-appmetrica.podspec
+@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
+   s.requires_arc = true
+ 
+   s.dependency "React"
+-  s.dependency 'YandexMobileMetrica', '3.9.4'
++  s.dependency 'YandexMobileMetrica', '3.17.0'
+ end
